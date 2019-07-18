@@ -32,7 +32,7 @@ ADCrossCheckSquid dispose d'une interface graphique créée avec Tkinter, son fo
 
 ![enter image description here](https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/prog_2.png)
 > **Important** : Pour pouvoir utiliser cette application, toutes les données (historique AD et logs) devront être stockées dans une base de données (voir plus bas)
-
+<br>
 ## Scénario d'utilisation
 
 Imaginez-vous un instant.... 
