@@ -54,7 +54,7 @@ Bref, c'est très long, compliqué et si vous ne concevrez pas suffisant de log 
 
 A ce jour le projet est complètement fonctionnel à condition d'utiliser les composants indiqués ci-dessous et de suivre le cheminement d'installation.  
 Une version compatible avec Debian/Ubuntu **pourrait** voir le jour dans les prochains mois !
-<br>
+<br><br>
 
 ## Configuration requise
 
@@ -183,7 +183,8 @@ Toujours depuis l'interface web, rendez-vous dans `System` puis dans `Package ma
 
 ### Autoriser la connexion SSH
 Encore une fois depuis l'interface web, rendez-vous dans `System` puis `Advanced` et cocher la case "Enable Secure Shell". 
-<br>
+<br><br>
+
 
 ## Configuration de l'application
 Pour que l'application fonctionne il vous sera nécessaire de procéder à une première initialisation. Cela s’effectuera grâce au script `setup.pyw` disponible dans le dossier que vous avez téléchargé. 
