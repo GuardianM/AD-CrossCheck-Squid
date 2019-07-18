@@ -105,7 +105,7 @@ La journalisation des connexions sera effectuée grâce à deux GPO et deux scri
  - Éditez les deux scripts et remplacez `WRITE_NAME_HERE` par le nom de votre DC. Voici un exemple pour une machine portant le nom de `AROBAZ-DC` :
 
 	> ::### DC NAME ###
-	set "DC=**AROBAZ-DC**"
+	> set "DC=**AROBAZ-DC**"
 
 
 <br>
