@@ -48,12 +48,13 @@ Vous vous remontez les manches et allez explorer plusieurs mois de log de votre 
 > Si vous avez de la chance vous trouverez cette ligne ! Vous sauriez alors depuis quel PC cela a eu lieu. Il faudrait alors analyser les journaux d’événement de votre AD pour savoir lequel des vos utilisateurs était connecté sur le PC au moment du téléchargement. 
 
 Bref, c'est très long, compliqué et si vous ne concevrez pas suffisant de log c'est impossible ! Voila donc le pourquoi du comment :)
+<br>
 
 ## Etat du projet
 
 A ce jour le projet est complètement fonctionnel à condition d'utiliser les composants indiqués ci-dessous et de suivre le cheminement d'installation.  
 Une version compatible avec Debian/Ubuntu **pourrait** voir le jour dans les prochains mois !
-
+<br>
 
 ## Configuration requise
 
@@ -66,7 +67,7 @@ Une version compatible avec Debian/Ubuntu **pourrait** voir le jour dans les pro
 - **Python en version 3.X** sur Windows (voir installation ci-dessous) et des paquets utilisés par le programme. 
 
 La mise en place de tout le reste sera expliqué plus bas !
-<br>
+<br><br>
 
 ## Préparation du serveur Windows
 
@@ -160,7 +161,7 @@ Vous en avez bientôt fini avec la partie Windows !  Il ne vous reste plus qu'a 
 
 <br>**3.** Cliquez sur Actions puis Nouveau et Parcourir pour aller chercher votre script `csv_to_sql`
  ![enter image description here](https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/tache_planifiee/6.png)
-	<br>
+<br><br>
 
 
 ## Préparation de pfSense
@@ -173,17 +174,15 @@ Connectez-vous à l'interface web de pfSense, rendez-vous dans `System` puis dan
 > - Sélectionnez `admins` et enfin sur `Move to "Member of" list` (entouré en rouge)
 >
 >![enter image description here](https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/ssh_user.png)
->
-
+<br>
 
 
 ### Installation du paquet SUDO
 Toujours depuis l'interface web, rendez-vous dans `System` puis dans `Package manager`. Dans l'onglet `Available Packages`  vous pourrez y rechercher le paquet nommé `sudo` et l'installer. 
-
+<br>
 
 ### Autoriser la connexion SSH
 Encore une fois depuis l'interface web, rendez-vous dans `System` puis `Advanced` et cocher la case "Enable Secure Shell". 
-
 <br>
 
 ## Configuration de l'application
