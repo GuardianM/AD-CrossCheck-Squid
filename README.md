@@ -48,7 +48,7 @@ Vous vous remontez les manches et allez explorer plusieurs mois de log de votre 
 > Si vous avez de la chance vous trouverez cette ligne ! Vous sauriez alors depuis quel PC cela a eu lieu. Il faudrait alors analyser les journaux d’événement de votre AD pour savoir lequel des vos utilisateurs était connecté sur le PC au moment du téléchargement. 
 
 Bref, c'est très long, compliqué et si vous ne concevrez pas suffisant de log c'est impossible ! Voila donc le pourquoi du comment :)
-<br>
+<br><br>
 
 ## Etat du projet
 
