@@ -94,7 +94,7 @@ La journalisation des connexions sera effectuée grâce à deux GPO et deux scri
 
 
 
-#### 1. Téléchargement des scripts
+##### 1. Téléchargement des scripts
 
  - Téléchargez l'ensemble du repository GitHub au format zip puis dézipper le sur le bureau de votre contrôleur de domaine (serveur qui gère l'Active Directory et qui sera appelé DC dans ce document). 
 
