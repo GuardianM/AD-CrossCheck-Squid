@@ -1,10 +1,28 @@
-
-
 # ADCrossCheckSquid
 
 ADCrossCheckSquid est un programme python permettant de recouper les informations de connexion d'un Active Directory avec les logs d'un proxy Squid. 
 
 Ce script a vu le jour en juillet 2019 dans le but de répondre à une problématique liée à mon activité professionnelle.
+
+## Tables des matières
+- [Description du projet](#description-du-projet)
+- [Scénario d'utilisation](#scénario-dutilisation)
+- [Etat du projet](#etat-du-projet)
+- [Configuration requise](#configuration-requise)
+- [Préparation du serveur Windows](#préparation-du-serveur-windows)
+	- [Installation de python](#installation-de-python)
+	- [Enregistrement de l’activité Active Directory](#enregistrement-de-lactivité-active-directory)
+		- [Téléchargement des scripts](#téléchargement-des-scripts)
+		- [Création du répertoire partagé](#création-du-répertoire-partagé)
+		- [Création des GPO](#création-des-gpo)
+		- [Ajout des taches planifiées](#ajout-des-taches-planifiées)
+- [Préparation de pfSense](#préparation-de-pfsense)
+	- [Création du compte utilisateur SSH](#création-du-compte-utilisateur-ssh)
+	- [Installation du paquet SUDO](#installation-du-paquet-sudo)
+	- [Autoriser la connexion SSH](#autoriser-la-connexion-ssh)
+- [Configuration de l'application](#configuration-de-lapplication)
+	- [Présentation du script d'initialisation](#présentation-du-script-dinitialisation)
+
 
 ## Description du projet
 
@@ -51,7 +69,7 @@ La mise en place de tout le reste sera expliqué plus bas !
 
 ## Préparation du serveur Windows
 
-**Installation de python** :
+###  Installation de python
 - Télécharger et installer la dernière version de Python 3.X [Page de téléchargement](https://www.python.org/downloads/)
 
 - **Attention** : veillez à bien activer l'option "Add Python 3.X to PATH" pendant l'installation (voir image ci-dessous)
@@ -66,12 +84,15 @@ La mise en place de tout le reste sera expliqué plus bas !
 	> 
 	> **information** : Si vous rencontrez une erreur lors de l'installation du paquet `mysqlclient`, vous pourrez l'installer en téléchargement le fichier approprié à votre installation [à cette adresse.](https://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient) 
 
-<br><br>**Enregistrement de l'activité Active Directory** :
+<br>
+
+### Enregistrement de l'activité Active Directory
 
 La journalisation des connexions sera effectuée grâce à deux GPO et deux scripts. Suivez les étapes suivantes pour mettre en place les différentes parties.
 
 
-<br>**1. Téléchargement des scripts**
+
+#### 1. Téléchargement des scripts
 
  - Téléchargez l'ensemble du repository GitHub au format zip puis dézipper le sur le bureau de votre contrôleur de domaine (serveur qui gère l'Active Directory et qui sera appelé DC dans ce document). 
 
@@ -85,7 +106,9 @@ La journalisation des connexions sera effectuée grâce à deux GPO et deux scri
 	set "DC=**AROBAZ-DC**"
 
 
-<br><br>**2. Création du répertoire partagé**
+<br>
+
+#### 2. Création du répertoire partagé
 
 Les scripts déplacés ci-dessous sont paramétrés pour stocker les informations dans un dossier nommé `SharedUsersLogs` qui doit être accessible à l'adresse `\\DC_NAME\SharedUsersLogs$`. Le signe $ indique que le dossier est masqué sur le réseau et n'est donc accessible que si l'on connait son adresse exactes. 
 Pour le mettre en place :
@@ -95,8 +118,10 @@ Pour le mettre en place :
 >- Cochez `partager ce dossier` puis ajouté le signe `$` à la fin du nom de partage. 
 >- Enfin modifiez les autorisations du partage pour que vos utilisateurs puissent avoir accès (en écriture) au dossier. 
 
+<br>
 
-<br><br>**3. Création des GPO**
+
+#### 3. Création des GPO
 
  Depuis la console `Gestion de stratégie de groupe`, créez une nouvelle GPO puis suivez les instructions suivantes. Il va de soit que la GPO que vous allez créer devra être appliquée à vos utilisateurs. 
  
@@ -106,15 +131,14 @@ Pour le mettre en place :
 	>Exemple de chemin réseau : **\\\AROBAZ-DC\netlogon\login.bat**
 
 
-
 - Script de fermeture de session : 
 	>Toujours sous Windows Server 2016 dans Configuration utilisateur > Stratégies > Paramètres Windows > Fermeture de session, double cliquez sur Fermeture de session, cliquez sur Ajouter puis indiquez le chemin jusqu'au script `logout.bat`
 
 	>Exemple de chemin réseau : **\\\AROBAZ-DC\netlogon\logout.bat**
 
+<br>
 
-
-<br> <br>**4. Ajout des taches planifiées :**
+#### 4. Ajout des taches planifiées 
  
 Vous en avez bientôt fini avec la partie Windows !  Il ne vous reste plus qu'a créer deux taches planifiées pour l’exécution des scripts.
 - Le premier script, `csv_to_sql`, sert à envoyer les données de connexion et de déconnexion enregistrés par la GPO vers la  table "user_act" de la base de données.
@@ -138,11 +162,11 @@ Vous en avez bientôt fini avec la partie Windows !  Il ne vous reste plus qu'a 
 	<br>
 
 
-## Préparation de PfSense
+## Préparation de pfSense
 
-**Création du compte utilisateur pour SSH :**
+### Création du compte utilisateur SSH
 
-Connectez-vous à l'interface web de PfSense, rendez-vous dans `System` puis dans `User Manager` et créez votre utilisateur en l'ajoutant au groupe admin (voir ci-dessous)
+Connectez-vous à l'interface web de pfSense, rendez-vous dans `System` puis dans `User Manager` et créez votre utilisateur en l'ajoutant au groupe admin (voir ci-dessous)
 
 > - Remplissez  au minimum les champs Username et Password 
 > - Sélectionnez `admins` et enfin sur `Move to "Member of" list` (entouré en rouge)
@@ -151,17 +175,20 @@ Connectez-vous à l'interface web de PfSense, rendez-vous dans `System` puis dan
 >
 
 
-<br>**Installation du paquet SUDO**
+
+### Installation du paquet SUDO
 Toujours depuis l'interface web, rendez-vous dans `System` puis dans `Package manager`. Dans l'onglet `Available Packages`  vous pourrez y rechercher le paquet nommé `sudo` et l'installer. 
 
-<br>**Autoriser la connexion en SSH**
+
+### Autoriser la connexion SSH
 Encore une fois depuis l'interface web, rendez-vous dans `System` puis `Advanced` et cocher la case "Enable Secure Shell". 
+
 <br>
 
 ## Configuration de l'application
 Pour que l'application fonctionne il vous sera nécessaire de procéder à une première initialisation. Cela s’effectuera grâce au script `setup.pyw` disponible dans le dossier que vous avez téléchargé. 
 
-**Présentation du script d’initialisation**
+### Présentation du script d’initialisation
 L'interface du script ce présente comme suit. Pour réussir cette étape : 
 - Remplissez chacune des cases en indiquant l'information demandée. Au moment de la validation plusieurs tests seront effectués, si l'un d'entres eux échoue vous serez averti par un message d'erreur. 
 - Après avoir validé les trois rubriques, un check final sera effectué et vous verrez (si tout vas bien) un message de confirmation vous indiquant que vous êtes fin prêt à utiliser AdCrossCheckSquid !
