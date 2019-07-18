@@ -104,8 +104,8 @@ La journalisation des connexions sera effectuée grâce à deux GPO et deux scri
  - Transférez les script présent dans le dossier `Active_directory` vers le dossier  `NETLOGON` de votre DC.
  - Éditez les deux scripts et remplacez `WRITE_NAME_HERE` par le nom de votre DC. Voici un exemple pour une machine portant le nom de `AROBAZ-DC` :
 
-	>::### DC NAME ###
-	>set "DC=**AROBAZ-DC**"
+	>::### DC NAME ###  
+	set "DC=**AROBAZ-DC**"
 
 
 <br>
