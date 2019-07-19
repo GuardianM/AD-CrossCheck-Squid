@@ -94,7 +94,7 @@ La journalisation des connexions sera effectuée grâce à deux GPO et deux scri
 
 
 
-#### 1. Téléchargement des scripts
+##### 1. Téléchargement des scripts
 
  - Téléchargez l'ensemble du repository GitHub au format zip puis dézipper le sur le bureau de votre contrôleur de domaine (serveur qui gère l'Active Directory et qui sera appelé DC dans ce document). 
 
@@ -104,7 +104,7 @@ La journalisation des connexions sera effectuée grâce à deux GPO et deux scri
  - Transférez les script présent dans le dossier `Active_directory` vers le dossier  `NETLOGON` de votre DC.
  - Éditez les deux scripts et remplacez `WRITE_NAME_HERE` par le nom de votre DC. Voici un exemple pour une machine portant le nom de `AROBAZ-DC` :
 
-	> ::### DC NAME ###
+	>::### DC NAME ###  
 	set "DC=**AROBAZ-DC**"
 
 
