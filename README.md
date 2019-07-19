@@ -39,16 +39,16 @@ ADCrossCheckSquid dispose d'une interface graphique créée avec Tkinter, son fo
 
 Imaginez-vous un instant.... 
 Vous travaillez pour une association qui propose un accès à internet aux habitants de votre quartier.
->L'Infrastructure de cet espace numérique est constituée entre autre d'un Active Directory et d'un proxy Squid (tournant sur pfSense). 
+>L'Infrastructure de cet espace numérique est constituée entre autres d'un Active Directory et d'un proxy Squid (tournant sur pfSense). 
 >
-Vous mettez à disposition une dizaine de PC aux habitants et chacun d'entres eux ont un compte utilisateur dans votre AD. Grace à des profils itinérant ils peuvent ce connecter à n'importe laquelle des machines pour travailler. 
+Vous mettez à disposition une dizaine de PC aux habitants et chacun d'entre eux ont un compte utilisateur dans votre AD. Grace à des profils itinérants ils peuvent se connecter à n'importe laquelle des machines pour travailler. 
 
-Un matin en arrivant au travail vous recevez un mail de votre FAI indiquant qu'un téléchargement illégal à eu lieu depuis votre connexion, 3 ou 4 mois en arrière ! Il vous demande alors de faire le nécessaire pour que cela ne se produise plus...
+Un matin en arrivant au travail vous recevez un mail de votre FAI indiquant qu'un téléchargement illégal a eu lieu depuis votre connexion, 3 ou 4 mois en arrière ! Il vous demande alors de faire le nécessaire pour que cela ne se produise plus...
 
 Vous vous remontez les manches et allez explorer plusieurs mois de log de votre proxy Squid dans l'espoir retrouver la ligne faisant référence à ce téléchargement. 
 > Si vous avez de la chance vous trouverez cette ligne ! Vous sauriez alors depuis quel PC cela a eu lieu. Il faudrait alors analyser les journaux d’événement de votre AD pour savoir lequel des vos utilisateurs était connecté sur le PC au moment du téléchargement. 
 
-Bref, c'est très long, compliqué et si vous ne concevrez pas suffisant de log c'est impossible ! Voila donc le pourquoi du comment :)
+Bref, c'est très long, compliqué et si vous ne concevrez pas suffisant de log c'est impossible ! Voilà donc le pourquoi du comment :)
 <br><br>
 
 ## Etat du projet
@@ -95,10 +95,10 @@ La journalisation des connexions sera effectuée grâce à deux GPO et deux scri
 
  - Téléchargez l'ensemble du repository GitHub au format zip puis dézipper le sur le bureau de votre contrôleur de domaine (serveur qui gère l'Active Directory et qui sera appelé DC dans ce document). 
 
- - Supprimez l'un des deux sous-dossier (ENG ou FR). Vous devez alors vous retrouver un avec arborescence similaire à celle-ci. 
+ - Supprimez l'un des deux sous-dossiers (ENG ou FR). Vous devez alors vous retrouver un avec arborescence similaire à celle-ci. 
 	> Mettre un schéma de l’arborescence des dossiers 
 
- - Transférez les script présent dans le dossier `Active_directory` vers le dossier  `NETLOGON` de votre DC.
+ - Transférez les script présents dans le dossier `Active_directory` vers le dossier  `NETLOGON` de votre DC.
  - Éditez les deux scripts et remplacez `WRITE_NAME_HERE` par le nom de votre DC. Voici un exemple pour une machine portant le nom de `AROBAZ-DC` :
 
 	>::### DC NAME ###  
@@ -108,7 +108,7 @@ La journalisation des connexions sera effectuée grâce à deux GPO et deux scri
 
 #### 2. Création du répertoire partagé
 
-Les scripts déplacés ci-dessous sont paramétrés pour stocker les informations dans un dossier nommé `SharedUsersLogs` qui doit être accessible à l'adresse `\\DC_NAME\SharedUsersLogs$`. Le signe $ indique que le dossier est masqué sur le réseau et n'est donc accessible que si l'on connait son adresse exactes. 
+Les scripts déplacés ci-dessous sont paramétrés pour stocker les informations dans un dossier nommé `SharedUsersLogs` qui doit être accessible à l'adresse `\\DC_NAME\SharedUsersLogs$`. Le signe $ indique que le dossier est masqué sur le réseau et n'est donc accessible que si l'on connaît son adresse exacte. 
 Pour le mettre en place :
 
 >- Sur le serveur, créez un dossier nommé `SharedUsersLogs`
@@ -120,16 +120,16 @@ Pour le mettre en place :
 
 #### 3. Création des GPO
 
- Depuis la console `Gestion de stratégie de groupe`, créez une nouvelle GPO puis suivez les instructions suivantes. Il va de soit que la GPO que vous allez créer devra être appliquée à vos utilisateurs. 
+ Depuis la console `Gestion de stratégie de groupe`, créez une nouvelle GPO puis suivez les instructions suivantes. Il va de soi que la GPO que vous allez créer devra être appliquée à vos utilisateurs. 
  
  - Script d'ouverture de session :
-	>Sous Windows Server 2016, la GPO est paramétrable dans Configuration utilisateur > Stratégies > Paramètres Windows. Double cliquez sur Ouverture de session puis sur Ajouter, enfin indiquez le chemin réseau jusqu'au script `login.bat`.
+	>Sous Windows Server 2016, la GPO est paramétrable dans Configuration utilisateur > Stratégies > Paramètres Windows. Double-cliquez sur Ouverture de session puis sur Ajouter, enfin indiquez le chemin réseau jusqu'au script `login.bat`.
 	
 	>Exemple de chemin réseau : **\\\AROBAZ-DC\netlogon\login.bat**
 
 
 - Script de fermeture de session : 
-	>Toujours sous Windows Server 2016 dans Configuration utilisateur > Stratégies > Paramètres Windows > Fermeture de session, double cliquez sur Fermeture de session, cliquez sur Ajouter puis indiquez le chemin jusqu'au script `logout.bat`
+	>Toujours sous Windows Server 2016 dans Configuration utilisateur > Stratégies > Paramètres Windows > Fermeture de session, double-cliquez sur Fermeture de session, cliquez sur Ajouter puis indiquez le chemin jusqu'au script `logout.bat`
 
 	>Exemple de chemin réseau : **\\\AROBAZ-DC\netlogon\logout.bat**
 
@@ -137,14 +137,14 @@ Pour le mettre en place :
 
 #### 4. Ajout des taches planifiées 
  
-Vous en avez bientôt fini avec la partie Windows !  Il ne vous reste plus qu'a créer deux taches planifiées pour l’exécution des scripts.
+Vous en avez bientôt fini avec la partie Windows !  Il ne vous reste plus qu'à créer deux taches planifiées pour l’exécution des scripts.
 - Le premier script, `csv_to_sql`, sert à envoyer les données de connexion et de déconnexion enregistrés par la GPO vers la  table "user_act" de la base de données.
 - Le second,`proxy`, se connecte à pfSense pour y récupérer les données de navigation et les envoyer vers la table "proxy" de la même BDD. 
  
  Je vous recommande de créer une tache qui s’exécutera toutes les 30 minutes pour le script `csv_to_sql`
  et une autre qui sera lancée toutes les nuits pour le script `proxy`. 
 
-<br>**Information** : Si vous savez pas créer de tache planifiée, vous trouverez ci-dessous le cheminement permettant d'en créer une fonctionnelle, qui exécutera le script csv_to_sql toutes les 30 minutes. 
+<br>**Information** : Si vous ne savez pas créer de tache planifiée, vous trouverez ci-dessous le cheminement permettant d'en créer une fonctionnelle, qui exécutera le script csv_to_sql toutes les 30 minutes. 
 
 <br>**1.** Renseignez le nom, la description de la tache et cochez la case "Exécuter même si l'utilisateur n'est pas connecté"
 ><img src="https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/tache_planifiee/1.png">
@@ -183,7 +183,7 @@ Encore une fois depuis l'interface web, rendez-vous dans `System` puis `Advanced
 ## Initialisation de l'application
 Pour que l'application fonctionne il vous sera nécessaire de procéder à une première initialisation. Cela s’effectuera grâce au script `setup.pyw` disponible dans le dossier que vous avez téléchargé. 
 
-L'interface du script ce présente comme suit. Pour réussir cette étape : 
-- Remplissez chacune des cases en indiquant l'information demandée. Au moment de la validation plusieurs tests seront effectués, si l'un d'entres eux échoue vous serez averti par un message d'erreur. 
+L'interface du script se présente comme suit. Pour réussir cette étape : 
+- Remplissez chacune des cases en indiquant l'information demandée. Au moment de la validation plusieurs tests seront effectués, si l'un d'entre eux échoue vous serez averti par un message d'erreur. 
 - Après avoir validé les trois rubriques, un check final sera effectué et vous verrez (si tout vas bien) un message de confirmation vous indiquant que vous êtes fin prêt à utiliser AdCrossCheckSquid !
 <img src="https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/setup_1.png" width="561" height="596">
