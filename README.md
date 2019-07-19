@@ -191,4 +191,4 @@ L'interface du script ce présente comme suit. Pour réussir cette étape :
 - Remplissez chacune des cases en indiquant l'information demandée. Au moment de la validation plusieurs tests seront effectués, si l'un d'entres eux échoue vous serez averti par un message d'erreur. 
 - Après avoir validé les trois rubriques, un check final sera effectué et vous verrez (si tout vas bien) un message de confirmation vous indiquant que vous êtes fin prêt à utiliser AdCrossCheckSquid !
 ![enter image description here](https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/setup_1.png)
-<img src="https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/setup_1.png" width="100" height="100">
+<img src="https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/setup_1.png" width="561" height="596">
