@@ -80,9 +80,7 @@ La mise en place de tout le reste sera expliqué plus bas !
 
 - Depuis l'invite de commande Windows, installer les paquets suivants à l'aide de PIP : `tkcalendar`, `sqlalchemy`, `mysqlclient`, `paramiko` et `pandas` (voir ci-dessous).
 
-	>Commande utilisée : `python -m pip install nom_du_package`
-	>
-	>![enter image description here](https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/install_package.png)        
+	>Commande utilisée : `python -m pip install nom_du_package`    
 	> 
 	> **information** : Si vous rencontrez une erreur lors de l'installation du paquet `mysqlclient`, vous pourrez l'installer en téléchargement le fichier approprié à votre installation [à cette adresse.](https://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient) 
 
