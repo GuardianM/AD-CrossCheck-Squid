@@ -186,7 +186,7 @@ Encore une fois depuis l'interface web, rendez-vous dans `System` puis `Advanced
 <br><br>
 
 
-## Configuration de l'application
+## Initialisation de l'application
 Pour que l'application fonctionne il vous sera nécessaire de procéder à une première initialisation. Cela s’effectuera grâce au script `setup.pyw` disponible dans le dossier que vous avez téléchargé. 
 
 L'interface du script ce présente comme suit. Pour réussir cette étape : 
