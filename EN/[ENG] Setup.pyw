@@ -12,7 +12,7 @@ import os.path
 
 
 
-# -------------------- Premiere fenetre avec le choix de la date -------------------- #
+# -------------------- Window -------------------- #
 
 class MainW(tk.Tk):
     def __init__(self, root):
@@ -28,7 +28,7 @@ class MainW(tk.Tk):
         self.protocol("WM_DELETE_WINDOW", self.ExitMain)
         self.configure(background="#343434")
 
-    # Initialisation de quelques variables
+    # Initialization of variables
 
         self.sshState = 0
         self.dbState = 0

@@ -12,7 +12,7 @@ import os.path
 
 
 
-# -------------------- Premiere fenetre avec le choix de la date -------------------- #
+# -------------------- Fenetre -------------------- #
 
 class MainW(tk.Tk):
     def __init__(self, root):
