@@ -77,20 +77,19 @@ La mise en place de tout le reste sera expliqué plus bas !
 
 - **Attention** : veillez à bien activer l'option "Add Python 3.X to PATH" pendant l'installation (voir image ci-dessous)  
 	><img src="https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/add_path.png" width="600" height="364">
+<br>
 
 - Depuis l'invite de commande Windows, installer les paquets suivants à l'aide de PIP : `tkcalendar`, `sqlalchemy`, `mysqlclient`, `paramiko` et `pandas` (voir ci-dessous).
 
 	>Commande utilisée : `python -m pip install nom_du_package`    
 	> 
-	> **information** : Si vous rencontrez une erreur lors de l'installation du paquet `mysqlclient`, vous pourrez l'installer en téléchargement le fichier approprié à votre installation [à cette adresse.](https://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient) 
+	> **Information** : Si vous rencontrez une erreur lors de l'installation du paquet `mysqlclient`, vous pourrez l'installer en téléchargement le fichier approprié à votre installation [à cette adresse.](https://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient) 
 
 <br>
 
 ### Enregistrement de l'activité Active Directory
 
 La journalisation des connexions sera effectuée grâce à deux GPO et deux scripts. Suivez les étapes suivantes pour mettre en place les différentes parties.
-
-
 
 #### 1. Téléchargement des scripts
 
@@ -118,7 +117,6 @@ Pour le mettre en place :
 >- Enfin modifiez les autorisations du partage pour que vos utilisateurs puissent avoir accès (en écriture) au dossier. 
 
 <br>
-
 
 #### 3. Création des GPO
 
