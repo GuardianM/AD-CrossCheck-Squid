@@ -20,8 +20,8 @@ Ce script a vu le jour en juillet 2019 dans le but de répondre à une probléma
 	- [Création du compte utilisateur SSH](#création-du-compte-utilisateur-ssh)
 	- [Installation du paquet SUDO](#installation-du-paquet-sudo)
 	- [Autoriser la connexion SSH](#autoriser-la-connexion-ssh)
-- [Configuration de l'application](#configuration-de-lapplication)
-	- [Présentation du script d'initialisation](#présentation-du-script-dinitialisation)
+- [Initialisation de l'application](#initialisation-de-lapplication)
+
 
 
 ## Description du projet
@@ -189,7 +189,6 @@ Encore une fois depuis l'interface web, rendez-vous dans `System` puis `Advanced
 ## Configuration de l'application
 Pour que l'application fonctionne il vous sera nécessaire de procéder à une première initialisation. Cela s’effectuera grâce au script `setup.pyw` disponible dans le dossier que vous avez téléchargé. 
 
-### Présentation du script d’initialisation
 L'interface du script ce présente comme suit. Pour réussir cette étape : 
 - Remplissez chacune des cases en indiquant l'information demandée. Au moment de la validation plusieurs tests seront effectués, si l'un d'entres eux échoue vous serez averti par un message d'erreur. 
 - Après avoir validé les trois rubriques, un check final sera effectué et vous verrez (si tout vas bien) un message de confirmation vous indiquant que vous êtes fin prêt à utiliser AdCrossCheckSquid !
