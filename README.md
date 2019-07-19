@@ -76,8 +76,8 @@ La mise en place de tout le reste sera expliqué plus bas !
 - Télécharger et installer la dernière version de Python 3.X [Page de téléchargement](https://www.python.org/downloads/)
 
 - **Attention** : veillez à bien activer l'option "Add Python 3.X to PATH" pendant l'installation (voir image ci-dessous)
-	![enter image description here](https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/add_path.png)
-
+	![enter image description here]()
+<img src="https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/add_path.png" width="466" height="210">
 
 - Depuis l'invite de commande Windows, installer les paquets suivants à l'aide de PIP : `tkcalendar`, `sqlalchemy`, `mysqlclient`, `paramiko` et `pandas` (voir ci-dessous).
 
