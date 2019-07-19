@@ -76,7 +76,7 @@ La mise en place de tout le reste sera expliqué plus bas !
 - Télécharger et installer la dernière version de Python 3.X [Page de téléchargement](https://www.python.org/downloads/)
 
 - **Attention** : veillez à bien activer l'option "Add Python 3.X to PATH" pendant l'installation (voir image ci-dessous)  
-<img src="https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/add_path.png" width="600" height="344">
+	><img src="https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/add_path.png" width="600" height="364">
 
 - Depuis l'invite de commande Windows, installer les paquets suivants à l'aide de PIP : `tkcalendar`, `sqlalchemy`, `mysqlclient`, `paramiko` et `pandas` (voir ci-dessous).
 
@@ -104,8 +104,7 @@ La journalisation des connexions sera effectuée grâce à deux GPO et deux scri
 
 	>::### DC NAME ###  
 	set "DC=**AROBAZ-DC**"
-
-
+	
 <br>
 
 #### 2. Création du répertoire partagé
@@ -149,16 +148,15 @@ Vous en avez bientôt fini avec la partie Windows !  Il ne vous reste plus qu'a 
 
 <br>**Information** : Si vous savez pas créer de tache planifiée, vous trouverez ci-dessous le cheminement permettant d'en créer une fonctionnelle, qui exécutera le script csv_to_sql toutes les 30 minutes. 
 
-<br>**1.** Renseignez le nom, la description de la tache et cochez la case `Exécuter même si l'utilisateur n'est pas connecté`
-![enter image description here](https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/tache_planifiee/1.png)
-
+<br>**1.** Renseignez le nom, la description de la tache et cochez la case "Exécuter même si l'utilisateur n'est pas connecté"
+><img src="https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/tache_planifiee/1.png">
 
 <br>**2.** Dans l'onglet Déclencheurs, cliquez sur Nouveau puis renseignez les informations comme ceci
-
-![enter image description here](https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/tache_planifiee/3.png)
+><img src="https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/tache_planifiee/3.png">
 
 <br>**3.** Cliquez sur Actions puis Nouveau et Parcourir pour aller chercher votre script `csv_to_sql`
- ![enter image description here](https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/tache_planifiee/6.png)
+><img src="https://adcrosschecksquid2019.s3.us-east-2.amazonaws.com/tache_planifiee/6.png">
+ 
 <br><br>
 
 
